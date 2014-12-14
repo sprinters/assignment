@@ -1,0 +1,155 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="Source.js"></script>
+<style type="text/css" href="UI.css"></style>
+
+</head>
+
+<body>
+</br>
+</br>
+</br>
+</br>
+<table>
+<tr>
+<td>
+<div class="search Criteria">
+<label for="city" id="CITY">CITY</label></br>
+<label id="STRTADD" >STREET ADDRESS</label></br>
+<label id="MINMAX_TOTAL_RATE">MAXIMUM / MINIMUM TOTAL RATE</label></br>
+<label id="MINMAX_STAR_RATE">MAXIMUM / MINIMUM STAR RATE</label></br>
+<label id="LONGITUDE_LATITUDE">LATITUTE / LONGITUTE</label></br>
+</div>
+</td>
+<td>
+<div class="CITYpop" id="CITYpop">
+  <form method="post" action="studentFormInsert.php" id="citybasedSearch" enctype="multipart/form-data">
+    <p><label for="city">CITY</label><input type="text" size="30" name="CITY" id="CITY_INPUT" /></p>
+    <p><input type="button" value="Show Results" name="submit" id="citybasedSearchsubmit" onclick="postdatacity()"/> 
+   </form>
+</div>
+<div class="ADDRESSpop" id="ADDRESSpop">
+  <form method="post" id="streetbasedSearch" action="/messages">
+    <p><label for="Street Address">STREET ADDRESS</label><input type="text" size="30" name="STREET" id="STREET_ADDRESS_INPUT" /></p>
+    <p><input type="button" value="Show Results" name="submit" id="StreetbasedSearchsubmit" onclick="postdatastreet()"/> 
+   </form>
+</div>
+<div class="MAXIMUM/MINIMUM TOTAL RATEpop" id="MAXIMUMMINIMUMTOTALRATEpop">
+  <form method="post" id="ratebasedsearch" action="/messages">
+    <table>
+    <tr>
+    <td>
+    <p><label for="Street Address">MINIMUM TOTAL RATE</label>
+    </p></td>
+    <td>
+    <input type="text" size="30" name="MinTotalRate" id="MinTotalRate_INPUT" />
+    <td>
+    </tr>
+    <tr>
+    <td>
+    <p><label for="Street Address">MAXIMUM TOTAL RATE</label>
+    </p>
+    </td>
+      <td>
+       <p><input type="text" size="30" name="MaxTotalRate" id="MaxTotalRate_INPUT"/></p>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    </td>
+    <td>
+    <p><input type="button" value="Show Results" name="submit" id="ratebasedsearch" onclick="postdataratebased()" /></p>
+    </td>
+    </tr>
+    </table> 
+   </form>
+</div>
+
+<div class="MAXIMUM/MINIMUM STAR RATEpop" id="MAXIMUMMINIMUMSTARRATEpop">
+  <form method="post" id="starratebasedsearch" action="/messages" >
+    <table>
+    <tr>
+    <td>
+    <p><label for="Street Address">MINIMUM STAR RATE</label>
+    </p></td>
+    <td>
+    <input type="text" size="30" name="MinTotalRate" id="MinStarRate_INPUT" />
+    <td>
+    </tr>
+    <tr>
+    <td>
+    <p><label for="Street Address">MAXIMUM STAR RATE</label>
+    </p>
+    </td>
+      <td>
+       <p><input type="text" size="30" name="MaxTotalRate" id="MaxStarRate_INPUT" /></p>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    </td>
+    <td>
+    <p><input type="button" value="Show Results" name="submit" id="strratebasedsearch" onclick="postdatastarratebased()"  /></p>
+    </td>
+    </tr>
+    </table> 
+   </form>
+</div>
+
+<div class="Latitude/Longitude pop" id="LatitudeLongitudepop">
+  <form method="post" id="longitutebasedsearch" action="/messages">
+    <table>
+    <tr>
+    <td>
+    <p><label for="Street Address">LATITUDE</label>
+    </p></td>
+    <td>
+    <input type="text" size="30" name="MinTotalRate" id="Latitude_INPUT" />
+    <td>
+    </tr>
+    <tr>
+    <td>
+    <p><label for="Street Address">LONGITUDE</label>
+    </p>
+    </td>
+      <td>
+       <p><input type="text" size="30" name="MaxTotalRate" id="Longitude_INPUT" /></p>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    </td>
+    <td>
+    <p><input type="submit" value="Show Results" id="latitudelongitutebasedsearch" onclick="postdatalatilongitutebased()"/></p>
+    </td>
+    </tr>
+    </table> 
+   </form>
+</div>
+<div id="mydata">
+<b>Current data in the system ...</b>
+<table id="myTableData"  border="1" cellpadding="2">
+    <tr>
+        <td>&nbsp;</td>
+        <td><b>Name</b></td>
+        <td><b>Age</b></td>
+    </tr>
+</table>
+&nbsp;<br/>
+</div>
+<div class="DealsResults" id="DealsResults" onload="adddealDeatilsTable()">
+
+
+</div>
+</td>
+<tr>
+  </table>
+
+</body>
+
+</html> 
