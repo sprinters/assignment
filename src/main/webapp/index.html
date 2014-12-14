@@ -15,7 +15,7 @@
 </br>
 </br>
 </br>
-<table>
+<table border="1" cellpadding="0">
 <tr>
 <td>
 <div class="search Criteria">
@@ -125,30 +125,41 @@
     <td>
     </td>
     <td>
-    <p><input type="submit" value="Show Results" id="latitudelongitutebasedsearch" onclick="postdatalatilongitutebased()"/></p>
+    <p><input type="button" value="Show Results" id="latitudelongitutebasedsearch" onclick="postdatalatilongitutebased()"/></p>
     </td>
     </tr>
     </table> 
    </form>
 </div>
-<div id="mydata">
-<b>Current data in the system ...</b>
-<table id="myTableData"  border="1" cellpadding="2">
-    <tr>
-        <td>&nbsp;</td>
-        <td><b>Name</b></td>
-        <td><b>Age</b></td>
+
+
+ </td>
     </tr>
 </table>
-&nbsp;<br/>
+<table >
+    <tr>
+<td>
+<div id="mydatadiv" >
+<table id="myTableData"  border="1" cellpadding="0">
+    <caption > **** Deal Details ***</caption>
+    <tr>
+        <th>Hotel Id</th>
+        <th>Hotel Name</th>
+        <th>Hotel</th>
+        <th>Description</th>
+        <th>streetAddress</th>
+        <th>City</th>
+        <th>Location</th>
+        <th>Check in Date</th>
+        <th>Check Out Date</th>
+    </tr>
+    <caption id="noData" > ****No Data Found ***</caption>
+</table>
 </div>
-<div class="DealsResults" id="DealsResults" onload="adddealDeatilsTable()">
+</tr>
+    </td>
+</table>
 
-
-</div>
-</td>
-<tr>
-  </table>
 
 </body>
 
