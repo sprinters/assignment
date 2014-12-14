@@ -3,27 +3,48 @@ function postdatacity() {
     alert(data);
     var requestType=0;
     var input=$('#CITY_INPUT').val();
-    var data=requestType+'/'+input;
-    postRequeset(data);
+    var subURL  = "paramName="+requestType+"&"+"paramValue="+input;
+    postRequeset(subURL);
 }
 function postdatastreet() {
     var data= $("#streetbasedSearch").serialize()
     alert(data);
+    var requestType=1;
+    var input=$('#STREET_ADDRESS_INPUT').val();
+    var subURL  =   "paramName="+requestType+"&"+"paramValue="+input;
+    postRequeset(subURL);
     
 }
 
 function postdataratebased(){
 	var data= $("#ratebasedsearch").serialize()
-    alert(data);
+    var requestType=4;
+    var input1=$('#MinTotalRate_INPUT').val();
+    var input2=$('#MaxTotalRate_INPUT').val();
+    var subURL  = "paramName="+requestType+"&"+"paramValue="+(input1+','+input2);
+    //var data=requestType+'/';
+    postRequeset(subURL);
 }
 
 function postdatastarratebased(){
 	var data= $("#starratebasedsearch").serialize()
+    var requestType=3;
+    var input1=$('#MinStarRate_INPUT').val();
+    var input2=$('#MaxStarRate_INPUT').val();
+    var subURL="paramName="+requestType+"&"+"paramValue="+(input1+','+input2);
+    //var data=requestType+'/'+input1+','+input2;
+    postRequeset(subURL);
     alert(data);
 }
 
 function postdatalatilongitutebased(){
-	var data= $("#longitutebasedsearch").serialize()
+	var data= $("#longitutebasedsearch").serialize() ;
+    var requestType=2;
+    var input1=$('#Latitude_INPUT').val();
+    var input2=$('#Longitude_INPUT').val();
+    var subURL  =   "paramName="+requestType+"&"+"paramValue="+(input1+','+input2);
+    //var data=requestType+'/'+input1+','+input2;
+    postRequeset(subURL);
     alert(data);
 }
 function postRequeset(dataval){
@@ -32,13 +53,12 @@ function postRequeset(dataval){
 		type: 'GET',
 		contentType: 'application/json',
 		crossDomain: true,
-		url: 'http://localhost:8080/expedia-final/webservice/baseService/processRequest/'+dataval,
+		url: 'http://localhost:8080/expedia-final/webservice/baseService/processRequest?'+dataval,
 		data: '',
 		success: function(data, textStatus, jqXHR)
 		{ 
-		alert(data);
+		addtableRowData(data)
         console.log(data);
-		alert('Stock updated successfully. Status: '+textStatus); 
 		},
 		error: function(jqXHR, textStatus, errorThrown){ alert('update Stock error: ' + textStatus); }
 		 
@@ -74,51 +94,44 @@ function toggle(id) {
 	var array=['div#CITYpop','div#ADDRESSpop',
 	           'div#MAXIMUMMINIMUMTOTALRATEpop',
 	           'div#MAXIMUMMINIMUMSTARRATEpop',
-	           'div#LatitudeLongitudepop'];
+	           'div#LatitudeLongitudepop','div#mydatadiv'];
 	
-	for(var counter=0;counter<5;counter++){
+	for(var counter=0;counter<array.length;counter++){
     if(id!=array[counter]){
 	jQuery(array[counter]).hide();
     }
 	}
 }
 
-function addRow() {
-    
-    var  name = document.getElementById("name");
-    var age = document.getElementById("age");
+function addtableRowData(data) {
+    $('div#mydatadiv').show();
+    $('#noData').hide();
     var table = document.getElementById("myTableData");
-
     var rowCount = table.rows.length;
-    var row = table.insertRow(rowCount);
-
-    row.insertCell(0).innerHTML= 
-    row.insertCell(1).innerHTML= myName.value;
-    row.insertCell(2).innerHTML= age.value;
-
-}
-function adddealDeatilsTable() {
-    
-    var myTableDiv = document.getElementById("myDynamicTable");
-     
-    var table = document.createElement('TABLE');
-    table.border='1';
-   
-    var tableBody = document.createElement('TBODY');
-    table.appendChild(tableBody);
-     
-    for (var i=0; i<3; i++){
-       var tr = document.createElement('TR');
-       tableBody.appendChild(tr);
-      
-       for (var j=0; j<4; j++){
-           var td = document.createElement('TD');
-           td.width='75';
-           td.appendChild(document.createTextNode("Cell " + i + "," + j));
-           tr.appendChild(td);
-       }
+    for (var x=rowCount-1; x>0; x--) {
+        table.deleteRow(x);
     }
-    myTableDiv.appendChild(table);
-   
+
+    rowCount = table.rows.length;
+    alert(rowCount);
+    if(data.length==0){
+        $('#noData').show();
+    }
+
+    for(var counter=0;counter<data.length;counter++){
+
+        var row = table.insertRow(rowCount);
+
+        dealDetails= data[counter];
+        row.insertCell(0).innerHTML=dealDetails.hotelId;
+        row.insertCell(1).innerHTML= dealDetails.name;
+        row.insertCell(2).innerHTML= '<img src='+'"'+dealDetails.imageUrl +'"'+"/>"
+        row.insertCell(3).innerHTML=  dealDetails.description;
+        row.insertCell(4).innerHTML= dealDetails.streetAddress;
+        row.insertCell(5).innerHTML=  dealDetails.city;
+        row.insertCell(6).innerHTML=dealDetails.location[0]+','+dealDetails.location[1];
+        row.insertCell(7).innerHTML= dealDetails.checkInDate;
+        row.insertCell(8).innerHTML= dealDetails.checkOutDate;
+    }
 }
 
