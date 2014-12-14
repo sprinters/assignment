@@ -1,6 +1,5 @@
 function postdatacity() {
     var data= $("#citybasedSearch").serialize()
-    alert(data);
     var requestType=0;
     var input=$('#CITY_INPUT').val();
     var subURL  = "paramName="+requestType+"&"+"paramValue="+input;
@@ -8,7 +7,6 @@ function postdatacity() {
 }
 function postdatastreet() {
     var data= $("#streetbasedSearch").serialize()
-    alert(data);
     var requestType=1;
     var input=$('#STREET_ADDRESS_INPUT').val();
     var subURL  =   "paramName="+requestType+"&"+"paramValue="+input;
@@ -34,7 +32,7 @@ function postdatastarratebased(){
     var subURL="paramName="+requestType+"&"+"paramValue="+(input1+','+input2);
     //var data=requestType+'/'+input1+','+input2;
     postRequeset(subURL);
-    alert(data);
+
 }
 
 function postdatalatilongitutebased(){
@@ -45,7 +43,7 @@ function postdatalatilongitutebased(){
     var subURL  =   "paramName="+requestType+"&"+"paramValue="+(input1+','+input2);
     //var data=requestType+'/'+input1+','+input2;
     postRequeset(subURL);
-    alert(data);
+
 }
 function postRequeset(dataval){
 	var dataval=dataval;
@@ -60,7 +58,7 @@ function postRequeset(dataval){
 		addtableRowData(data)
         console.log(data);
 		},
-		error: function(jqXHR, textStatus, errorThrown){ alert('update Stock error: ' + textStatus); }
+		error: function(jqXHR, textStatus, errorThrown){  }
 		 
 		});
 	
@@ -113,7 +111,7 @@ function addtableRowData(data) {
     }
 
     rowCount = table.rows.length;
-    alert(rowCount);
+
     if(data.length==0){
         $('#noData').show();
     }
